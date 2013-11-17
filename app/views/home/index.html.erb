@@ -1,0 +1,26 @@
+
+
+<h1>Listing lists</h1>
+
+<div class="row">
+      <%=  @lists %>
+	<% @lists.each do |list| %>
+	<div class="col-sm-6 col-md-3 well">		
+			<h2><%= list.title %></h2> 
+
+		<a href="#" class="thumbnail">
+			ATIVIDADES1         
+		</a>
+		<a href="#" class="thumbnail">
+			ATIVIDADES1         
+		</a>
+		<a href="#" class="thumbnail">
+			ATIVIDADES1         
+		</a>
+		<%= link_to 'New Card', new_task_path, :class => "btn btn-primary btn-lg btn-block" %>		
+	</div>
+	<% end %>
+</div>
+<br>
+
+<%= link_to 'New List', new_list_path %>
