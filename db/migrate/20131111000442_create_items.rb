@@ -6,6 +6,6 @@ class CreateItems < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :items, :checklist_id ,                :unique => true
+    add_index :items, :checklist_id 
   end
 end

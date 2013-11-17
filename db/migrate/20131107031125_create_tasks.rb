@@ -10,7 +10,7 @@ class CreateTasks < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :tasks, :color_id ,                :unique => true
-    add_index :tasks, :list_id ,                :unique => true
+    add_index :tasks, :color_id 
+    add_index :tasks, :list_id               
   end
 end
