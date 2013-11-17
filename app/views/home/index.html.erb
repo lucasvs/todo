@@ -3,10 +3,14 @@
 <h1>Listing lists</h1>
 
 <div class="row">
-      <%=  @lists %>
+	<%=  @lists %>
 	<% @lists.each do |list| %>
 	<div class="col-sm-6 col-md-3 well">		
-			<h2><%= list.title %></h2> 
+		<% list.tasks.each do |task| %>
+		
+		<%= link_to task.title, edit_task_path(task), :remote => true,:class => "thumbnail" %>
+		<% end %>
+		<h2><%= list.title %></h2> 
 
 		<a href="#" class="thumbnail">
 			ATIVIDADES1         
@@ -22,5 +26,6 @@
 	<% end %>
 </div>
 <br>
+
 
 <%= link_to 'New List', new_list_path %>

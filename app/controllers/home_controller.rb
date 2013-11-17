@@ -7,6 +7,7 @@ class HomeController < ApplicationController
 
   def index
   	@lists =  List.all(:include => :tasks)  	
+
   end
 
 end
