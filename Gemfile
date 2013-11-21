@@ -7,7 +7,7 @@ gem 'rails', '4.0.0'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :ref => '49aebde'
 
 # Use sqlite as the database for Active Record
-gem 'sqlite3', group: :development
+gem 'sqlite3', :group => :development
 
 
 # Use postgresql as the database for Active Record
@@ -49,7 +49,7 @@ gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', :require => false
 end
 
 # Use ActiveModel has_secure_password
@@ -59,10 +59,10 @@ end
  gem 'unicorn'
 
 # Use Capistrano for deployment
- gem 'capistrano', '~> 3.0', group: :development
- gem 'capistrano-rails', group: :development
- gem 'capistrano-bundler', group: :development
- gem 'capistrano-rvm', '~> 0.0.3', group: :development
+ gem 'capistrano', '~> 3.0', :group => :development
+ gem 'capistrano-rails', :group => :development
+ gem 'capistrano-bundler', :group => :development
+ gem 'capistrano-rvm', '~> 0.0.3', :group => :development
 
 
 # Use debugger
