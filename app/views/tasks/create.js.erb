@@ -1,0 +1,31 @@
+<% if @task.errors.any? -%>
+  /*Hide the flash notice div*/
+  $("#flash_notice").hide(300);
+
+  /*Update the html of the div post_errors with the new one*/
+  $("#task_errors").html("<%= escape_javascript(error_messages_for(@task))%>");
+
+  /*Show the div post_errors*/
+  $("#task_errors").show(300);
+<% else -%>
+  /*Hide the div post_errors*/
+  $("#task_errors").hide(300);
+
+  /*Update the html of the div flash_notice with the new one*/
+  $("#flash_notice").html("<%= escape_javascript(@task.list_id.to_s)%>");
+  $("#flash").html("<%= escape_javascript(render('shared/flash'))%>");
+
+  /*Show the flash_notice div*/
+  $("#flash_notice").show(300);
+
+  /*Clear the entire form*/
+  $(":input:not(input[type=submit])").val("");
+
+  /* append na lista do id certo*/
+    
+  $("#<%= escape_javascript(@task.list_id.to_s)%>-List").append("<a class='thumbnail' data-remote='true' href='/tasks/<%= escape_javascript(@task.id.to_s)%>/edit'><%= escape_javascript(@task.title.to_s)%></a>");
+
+   $('#myModal').modal('hide'); 
+  
+
+<% end -%>

@@ -8,10 +8,11 @@ gem 'rails', '4.0.0'
 # Use Devise for user authentication
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :ref => '49aebde'
 
-# Use sqlite3 as the database for Active Record
+# Use postgresql as the database for Active Record
 gem 'sqlite3'
 
-
+# Use postgresql as the database for Active Record
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -47,10 +48,14 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+ gem 'capistrano', '~> 3.0', group: :development
+ gem 'capistrano-rails', group: :development
+ gem 'capistrano-bundler', group: :development
+ gem 'capistrano-rvm', '~> 0.0.3', group: :development
+
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

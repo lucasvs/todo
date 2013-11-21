@@ -1,0 +1,10 @@
+<%= form_for(@task,:remote => true) do |f| %>
+ <div id= "task_errors" style="display:none"></div>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <%= f.hidden_field :list_id, :value => @list %>   
+
+<% end %>

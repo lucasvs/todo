@@ -3,6 +3,7 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :description
       t.integer :checklist_id
+      t.boolean :check
 
       t.timestamps
     end

@@ -18,5 +18,6 @@ DeviseExample::Application.routes.draw do
   resources :admins, only: :index
 
   root 'home#index'
+  
 
 end

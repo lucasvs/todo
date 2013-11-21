@@ -1,0 +1,20 @@
+$("#<%= escape_javascript(@list)%>-List").append("<%= escape_javascript(render "new", :formats => [:html]) %>");
+//$("#main").before("<%= escape_javascript(render "new", :formats => [:html]) %>");
+$("#myModal").modal();
+
+$('#task_title').on('blur', function () {    
+     $('#new_task').submit();
+     $("#myModal").modal('hide')
+  });
+
+$('#task_title').on('keydown', function (ev) {
+       if(ev.which === 13) {
+        // Will change backgroundColor to blue as example       
+        $('#new_task').submit();
+        $("#myModal").modal('hide');
+        // Avoid form submit
+        return false;
+    }
+  });
+
+

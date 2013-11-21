@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112212635) do
+ActiveRecord::Schema.define(version: 20131111000841) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -45,11 +45,13 @@ ActiveRecord::Schema.define(version: 20131112212635) do
 
   create_table "items", force: true do |t|
     t.string   "description"
-    t.boolean  "check"
     t.integer  "checklist_id"
+    t.boolean  "check"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "items", ["checklist_id"], name: "index_items_on_checklist_id"
 
   create_table "lists", force: true do |t|
     t.string   "title"
@@ -71,8 +73,8 @@ ActiveRecord::Schema.define(version: 20131112212635) do
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["color_id"], name: "index_tasks_on_color_id", unique: true
-  add_index "tasks", ["list_id"], name: "index_tasks_on_list_id", unique: true
+  add_index "tasks", ["color_id"], name: "index_tasks_on_color_id"
+  add_index "tasks", ["list_id"], name: "index_tasks_on_list_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

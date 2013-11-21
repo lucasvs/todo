@@ -1,28 +1,18 @@
 
-
 <h1>Listing lists</h1>
 
-<div class="row">
-	<%=  @lists %>
+<div class="row">	
 	<% @lists.each do |list| %>
-	<div class="col-sm-6 col-md-3 well">		
-		<% list.tasks.each do |task| %>
-		
+	<div class="col-sm-6 col-md-3 well" >
+	<div id="<%= list.id %>-List">	
+	<h3><%= list.title %></h3> 			
+		<% list.tasks.each do |task| %>		
 		<%= link_to task.title, edit_task_path(task), :remote => true,:class => "thumbnail" %>
-		<% end %>
-		<h2><%= list.title %></h2> 
-
-		<a href="#" class="thumbnail">
-			ATIVIDADES1         
-		</a>
-		<a href="#" class="thumbnail">
-			ATIVIDADES1         
-		</a>
-		<a href="#" class="thumbnail">
-			ATIVIDADES1         
-		</a>
-		<%= link_to 'New Card', new_task_path, :class => "btn btn-primary btn-lg btn-block" %>		
+		<% end %>	
+		</div>	
+		<%= link_to 'Nova Tarefa', new_task_path(:list => list.id), :remote => true, :class => "btn btn-primary btn-lg btn-block" %>		
 	</div>
+	
 	<% end %>
 </div>
 <br>
