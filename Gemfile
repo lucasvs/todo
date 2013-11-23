@@ -9,7 +9,6 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :ref => '49ae
 # Use sqlite as the database for Active Record
 gem 'sqlite3', :group => :development
 
-
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -65,6 +64,7 @@ end
  gem 'capistrano-rvm', '~> 0.0.3', :group => :development
 
 
+gem "mailcatcher", "~> 0.5.12"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
