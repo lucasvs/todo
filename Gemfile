@@ -63,8 +63,6 @@ end
  gem 'capistrano-bundler', :group => :development
  gem 'capistrano-rvm', '~> 0.0.3', :group => :development
 
-
-gem "mailcatcher", "~> 0.5.12"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 

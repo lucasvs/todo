@@ -1,9 +1,21 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-   before_action :authenticate_user!, only: :token
-  before_filter :authenticate_user!, :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :exception   
+   before_filter :require_login
+
+private
+
+  def require_login
+  	controller=request.fullpath.split('/')
+  	if controller[1] != "users"
+    unless current_user
+      flash[:error] = "Acesso negado necessario login"
+      redirect_to "/users/sign_in"
+    end
+end
+  end
+  
 
   protected
 

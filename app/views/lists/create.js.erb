@@ -1,0 +1,40 @@
+<% if @list.errors.any? -%>
+  /*Hide the flash notice div*/
+  $("#flash_notice").hide(300);
+
+ <% @list.errors.full_messages.each do |msg| -%>
+ $("#list_errors").html("<%= escape_javascript(msg)%>");     
+  <% end -%>
+
+  $("#new_list").remove();
+  /*Update the html of the div post_errors with the new one*/
+
+  /*Show the div post_errors*/
+  $("#list_errors").show(300);
+    $("#form-list").remove();
+
+<% else -%>
+  /*Hide the div post_errors*/
+  $("#list_errors").hide(300);
+
+  /*Update the html of the div flash_notice with the new one*/
+
+  $("#flash").html("<%= escape_javascript(render('shared/flash'))%>");
+
+   $("#flash").hide(2000);
+
+  /*Clear the entire form*/
+  $(":input:not(input[type=submit])").val("");
+
+  /* append na lista do id certo*/
+
+
+
+  $("#form-list").html("<div class=''><div style='height:200px'><div id='<%= escape_javascript(@list.id.to_s)%>-List' class='well'><h3><%= escape_javascript(@list.title)%></h3><div id='vazio' style='height:50px'></div></div><a class='btn btn-primary btn-lg btn-block' data-remote='true' href='/tasks/new?list=<%= escape_javascript(@list.id.to_s)%>' style='margin-top: 0px;'>Nova Tarefa</a></div></div>");
+  //remover id do form-list
+  $("#form-list").attr("id","");
+
+  $("#new_list").remove();
+  
+
+<% end -%>

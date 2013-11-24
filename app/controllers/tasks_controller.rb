@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :configure_permitted_parameters, if: :devise_controller?
 
@@ -33,8 +34,7 @@ end
     @task = Task.new(task_params)
     @list_id = task_params[:list_id]    
       if @task.save                
-         flash.now[:notice] = "Successfully created task." 
-
+         flash.now[:success] = "Successfully created task." 
     end
   end
 

@@ -4,3 +4,14 @@
 // import original bootstrap
 @import "twitter/bootstrap";
 
+
+div.row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+div.row [class*="col-sm-6"] {
+    display: inline-block;
+    float: none; /* Very important */
+    clear: both;
+}
+

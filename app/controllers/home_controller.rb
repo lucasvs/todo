@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def index
-  	@lists =  List.all(:include => :tasks)  	
+  	@lists =  List.all(:include => :tasks,:conditions => {:user_id => current_user.id})  	
 
   end
 

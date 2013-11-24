@@ -11,7 +11,7 @@
 <body>
 
 
-
+<% if user_signed_in? or admin_signed_in? -%>
   <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -74,10 +74,12 @@
       <% end -%>
     </div><!-- /.navbar-collapse -->
   </nav>
+  <% end -%>
   <div class="container" role="main" id="main">
    <div id="flash"> 
 <%= render("shared/flash") %>
 </div>
+
     <%- if show_title? -%>
     <h1><%=h yield(:title) %></h1>
     <%- end -%>

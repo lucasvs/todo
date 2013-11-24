@@ -1,6 +1,6 @@
 $("#<%= escape_javascript(@list)%>-List").append("<%= escape_javascript(render "new", :formats => [:html]) %>");
 //$("#main").before("<%= escape_javascript(render "new", :formats => [:html]) %>");
-$("#myModal").modal();
+$('#task_title').focus();
 
 $('#task_title').on('blur', function () {    
      $('#new_task').submit();
