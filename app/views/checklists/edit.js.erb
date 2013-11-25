@@ -1,0 +1,18 @@
+$("#task-<%= escape_javascript(@task)%>").html("<%= escape_javascript(render "edit", :formats => [:html]) %>");
+$('#checklist_description').focus();
+
+$('#checklist_description').on('blur', function () {    
+     $('.edit_checklist').submit();
+     
+  });
+
+$('#checklist_description').on('keydown', function (ev) {
+       if(ev.which === 13) {
+        // Will change backgroundColor to blue as example       
+        $('.edit_checklist').submit();        
+        // Avoid form submit
+        return false;
+    }
+  });
+
+

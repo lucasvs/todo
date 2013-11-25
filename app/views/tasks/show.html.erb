@@ -1,5 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<h3>Stuff to do</h3>
+<ul>
+  <% @task.checklists.each do |item| %>
+  <li><%= item.description %></li>
+   <li><%= check_box_tag( "id", item.id, item.completed, data: {
+    remote: true,
+    url:  complete_task_path(item.id)   ,
+  }) %></li>
+  <% end %>
+
+  
+</ul>
+
+
+
+
 <p>
   <strong>Title:</strong>
   <%= @task.title %>

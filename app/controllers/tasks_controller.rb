@@ -11,7 +11,9 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   # GET /tasks/1.json
-  def show
+  def show  
+      @task = Task.find(params[:id])
+    @checklist = @task.checklists.new
   end
 
   # GET /tasks/new
@@ -25,7 +27,9 @@ class TasksController < ApplicationController
 end
 
   # GET /tasks/1/edit
-  def edit
+  def edit  
+    @task = Task.find(params[:id])
+    @checklist = @task.checklists.new   
   end
 
   # POST /tasks
@@ -41,14 +45,8 @@ end
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+     if @task.update(task_params)
+      flash.now[:success] = "Successfully created task." 
     end
   end
 

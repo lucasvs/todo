@@ -1,0 +1,6 @@
+<% if @checklist.completed %>
+ $("#link-<%= escape_javascript(@checklist.id.to_s)%>").css({ 'text-decoration': 'line-through' });
+
+<% else %>
+$("#link-<%= escape_javascript(@checklist.id.to_s)%>").css({ 'text-decoration': '' });
+<% end %>

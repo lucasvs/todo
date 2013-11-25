@@ -1,11 +1,20 @@
 class ChecklistsController < ApplicationController
   before_action :set_checklist, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, :configure_permitted_parameters, if: :devise_controller?
 
   # GET /checklists
   # GET /checklists.json
   def index
     @checklists = Checklist.all
+  end
+
+  def complete
+    @checklist = Checklist.find(params[:id])
+    if (@checklist.completed)
+      @checklist.completed = false    
+    else
+      @checklist.completed = true
+    end
+    @checklist.save    
   end
 
   # GET /checklists/1
@@ -14,41 +23,38 @@ class ChecklistsController < ApplicationController
   end
 
   # GET /checklists/new
-  def new
+  def new    
+    if request.xhr?
+     @checklist = Checklist.new
+     @task = params[:task]
+   else
     @checklist = Checklist.new
-  end
+  end 
+end
 
   # GET /checklists/1/edit
   def edit
-  end
+    if request.xhr? 
+      controller=request.fullpath.split('/')    
+      @task = controller[2]
+   end 
+ end
 
   # POST /checklists
   # POST /checklists.json
   def create
-    @checklist = Checklist.new(checklist_params)
-
-    respond_to do |format|
-      if @checklist.save
-        format.html { redirect_to @checklist, notice: 'Checklist was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @checklist }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @checklist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    @checklist = Checklist.new(checklist_params)   
+    @task_id = checklist_params[:task_id]    
+    if @checklist.save                
+     flash.now[:success] = "Successfully created task." 
+   end
+ end
 
   # PATCH/PUT /checklists/1
   # PATCH/PUT /checklists/1.json
-  def update
-    respond_to do |format|
-      if @checklist.update(checklist_params)
-        format.html { redirect_to @checklist, notice: 'Checklist was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @checklist.errors, status: :unprocessable_entity }
-      end
+  def update    
+    if @checklist.update(checklist_params)
+      flash.now[:success] = "Successfully created task." 
     end
   end
 
@@ -70,6 +76,6 @@ class ChecklistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checklist_params
-      params.require(:checklist).permit(:title)
+      params.require(:checklist).permit(:description, :completed, :task_id)
     end
-end
+  end

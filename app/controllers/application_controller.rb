@@ -9,8 +9,7 @@ private
   def require_login
   	controller=request.fullpath.split('/')
   	if controller[1] != "users"
-    unless current_user
-      flash[:error] = "Acesso negado necessario login"
+    unless current_user      
       redirect_to "/users/sign_in"
     end
 end

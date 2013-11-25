@@ -1,0 +1,24 @@
+<% if @task.errors.any? -%>
+  /*Hide the flash notice div*/
+  $("#flash_notice").hide(300);
+
+ <% @task.errors.full_messages.each do |msg| -%>
+ $("#checklist_errors").html("<%= escape_javascript(msg)%>");     
+  <% end -%>
+
+
+<% else -%>
+
+  /*Update the html of the div flash_notice with the new one*/ 
+  $("#flash").html("<%= escape_javascript(render('shared/flash'))%>");
+
+  $("#flash").hide(2000);
+  
+   
+
+$("#main-<%= escape_javascript(@task.id.to_s)%>").html('<%= escape_javascript(@task.title)%>');
+
+ 
+  
+
+<% end -%>

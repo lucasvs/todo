@@ -1,0 +1,18 @@
+$("#checklist-<%= escape_javascript(@task)%>").append("<%= escape_javascript(render "new", :formats => [:html]) %>");
+$('#checklist_description').focus();
+
+$('#checklist_description').on('blur', function () {    
+     $('#new_checklist').submit();
+     
+  });
+
+$('#checklist_description').on('keydown', function (ev) {
+       if(ev.which === 13) {
+        // Will change backgroundColor to blue as example       
+        $('#new_checklist').submit();        
+        // Avoid form submit
+        return false;
+    }
+  });
+
+

@@ -1,41 +1,88 @@
+
 <%= form_for(@task,:remote => true) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <script>
+   $('#myModal').on('hidden.bs.modal', function () {
+    $(this).remove();
+  });
+ </script>
+ <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel"><div id="title"><%= @task.title %> </div></h4>
     </div>
-  <% end %>
+    <div class="modal-body">
+      
+<div id="description"><%= @task.description %> </div>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :move %><br>
-    <%= f.number_field :move %>
-  </div>
-  <div class="field">
-    <%= f.label :color_id %><br>
-    <%= f.number_field :color_id %>
-  </div>
-  <div class="field">
-    <%= f.label :list_id %><br>
-    <%= f.number_field :list_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+<h3>CheckList</h3>
+<div id="checklist-<%= @task.id %>">
+  <% @task.checklists.each do |item| %>
+  <% if item.id != nil %>
+  <div class="checkbox">
+
+   <%= check_box_tag( "id", item.id, item.completed, data: 
+   {remote: true,url:  complete_task_path(item.id),  }) %>
+   <div id="task-<%= item.id.to_s %>" >
+   <label>
+     <% if item.completed %>
+     <%= link_to item.description, edit_checklist_path(item.id), :remote => true, :class => "",:id => "link-"+item.id.to_s, :style => "margin-top: 0px;text-decoration:line-through" %>
+     <% else %>     
+     <%= link_to item.description, edit_checklist_path(item.id), :remote => true,:id => "link-"+item.id.to_s , :class => "", :style => "margin-top: 0px;" %>
+     <% end %>
+   </label> 
+   </div>
+ </div>
+ <% end %>
+ <% end %>
+</div>
+<%= link_to 'Novo Item...', new_checklist_path(:task => @task.id), :remote => true, :class => "btn btn-success ", :style => "margin-top: 5px;" %>
+<%= link_to 'X', new_checklist_path(:task => @task.id), :remote => true, :class => "btn btn-danger ", :style => "margin-top: 5px;" %>
+
+
+
+
+
+
+<% if @task.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+  <ul>
+    <% @task.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+
+
+<div class="field">
+  <%= f.label :date %><br>
+  <%= f.datetime_select :date %>
+</div>
+<div class="field">
+  <%= f.label :move %><br>
+  <%= f.number_field :move %>
+</div>
+<div class="field">
+  <%= f.label :color_id %><br>
+  <%= f.number_field :color_id %>
+</div>
+<div class="field">
+  <%= f.label :list_id %><br>
+  <%= f.number_field :list_id %>
+</div>
+
+<% end %>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-danger">Excluir task</button>
+    </div>
+  </div>
+</div>
+</div>

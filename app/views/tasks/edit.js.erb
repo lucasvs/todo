@@ -1,2 +1,63 @@
 $("#main").before("<%= escape_javascript(render "edit", :formats => [:html]) %>");
 $("#myModal").modal();
+
+
+
+$('#title').on('click', function () {  
+
+	var str1 = $(this).html();
+	var str2 = "<input";
+	if(str1.indexOf(str2) != -1){
+		
+	}else{
+		$(this).html('<input id="task_title" class="form-control" name="task[title]" type="text" value="'+$(this).html()+'">');
+		$("#task_title").focus();
+		update();
+	}
+});
+
+function update(){
+	$('#task_title').on('blur', function () {  	
+		$('.edit_task').submit();
+		$("#title").html($(this).val());
+
+		
+	});
+
+	$('#task_title').on('keydown', function (ev) {
+		if(ev.which === 13) {
+        // Will change backgroundColor to blue as example       
+        $('.edit_task').submit(); 
+        $("#title").html($(this).val());      
+        // Avoid form submit
+        return false;
+    }
+});
+}
+
+$('#description').on('click', function () {  
+
+	var str1 = $(this).html();
+	var str2 = "textarea";
+	if(str1.indexOf(str2) != -1){
+		
+	}else{
+
+		var texto =   $(this).html(); 
+		$(this).html('<textarea id="task_description" name="task[description]"></textarea>');
+		$("#task_description").text(texto);
+		$("#task_description").focus();
+		update_description();
+
+	}
+});
+
+function update_description(){
+	$('#task_description').on('blur', function () {  	
+		$('.edit_task').submit();
+		$("#description").html($(this).val());
+		
+	});
+
+
+}

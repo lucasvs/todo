@@ -4,6 +4,7 @@
   <div class="field">   
     <%= f.text_field :title, class: 'form-control' %>
   </div>
+  <%= f.hidden_field :description, :value => "Sem descriçao" %>
   <%= f.hidden_field :list_id, :value => @list %>   
 
 <% end %>

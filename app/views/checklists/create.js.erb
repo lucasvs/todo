@@ -1,0 +1,35 @@
+<% if @checklist.errors.any? -%>
+  /*Hide the flash notice div*/
+  $("#flash_notice").hide(300);
+
+ <% @checklist.errors.full_messages.each do |msg| -%>
+ $("#checklist_errors").html("<%= escape_javascript(msg)%>");     
+  <% end -%>
+
+  $("#new_checklist ").remove();
+  /*Update the html of the div post_errors with the new one*/
+
+  /*Show the div post_errors*/
+  $("#checklist_errors").show(300);
+
+<% else -%>
+  /*Hide the div post_errors*/
+  $("#checklist_errors").hide(300);
+
+  /*Update the html of the div flash_notice with the new one*/
+  $("#flash_notice").html("<%= escape_javascript(@checklist.task_id.to_s)%>");
+  $("#flash").html("<%= escape_javascript(render('shared/flash'))%>");
+
+  $("#flash").hide(2000);
+  
+
+  /* append na lista do id certo*/
+    
+    
+  $("#task-<%= escape_javascript(@checklist.id.to_s)%>").append('<div class="checkbox"><input  data-remote="true" data-url="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/complete" id="id" name="id" type="checkbox" ><label><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="task-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></label></div>');
+
+  $("#new_checklist ").remove();
+ 
+  
+
+<% end -%>

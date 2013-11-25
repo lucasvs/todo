@@ -1,8 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @checklist.title %>
+  <strong>Description:</strong>
+  <%= @checklist.description %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @checklist.completed %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @checklist.task_id %>
 </p>
 
 <%= link_to 'Edit', edit_checklist_path(@checklist) %> |

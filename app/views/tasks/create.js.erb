@@ -26,7 +26,7 @@
 
   /* append na lista do id certo*/
     
-  $("#<%= escape_javascript(@task.list_id.to_s)%>-List").append("<a class='thumbnail' data-remote='true' href='/tasks/<%= escape_javascript(@task.id.to_s)%>/edit'><%= escape_javascript(@task.title.to_s)%></a>");
+  $("#<%= escape_javascript(@task.list_id.to_s)%>-List").append("<a class='thumbnail' data-remote='true' href='/tasks/<%= escape_javascript(@task.id.to_s)%>/edit'  id='main-<%= escape_javascript(@task.id.to_s)%>'><%= escape_javascript(@task.title.to_s)%></a>");
 
   $("#new_task ").remove();
   $("#vazio").remove();
