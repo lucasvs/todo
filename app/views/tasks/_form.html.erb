@@ -17,12 +17,27 @@
 
         <div id="description"><%= @task.description %> </div>
 
-
      <% end %>
       <div class="modal-body">
 
 
-      <h3>CheckList</h3>
+
+      
+      <% qtd = 0 %>
+       <% @task.checklists.each do |item| %>
+            <% if item.completed %>
+              <% qtd = qtd + 1%>
+            <% end %>
+          
+       <% end %>
+       <% porct = (qtd*100) / (@task.checklists.size - 1) %>
+       <h3>CheckList <span id="porcentagem"><%= porct %>%</span> </h3>
+       
+      <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= porct %>%;">
+    <span class="sr-only">60% Complete</span>
+  </div>
+</div>
       <div id="checklist-<%= @task.id %>">
         <% @task.checklists.each do |item| %>
         <% if item.id != nil %>

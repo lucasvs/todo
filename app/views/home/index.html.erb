@@ -3,19 +3,34 @@
 <h1>Lista de tarefas</h1>
 
 <div class="row" style="overflow-x: scroll;">	
-<% if  @lists.size  > 0 %>
+	<% if  @lists.size  > 0 %>
 	<% @lists.each do |list| %>
 	<div class="col-sm-6 col-md-3" >
 		<div class="">
 			<div style="height:200px">
 				<div id="<%= list.id %>-List" class="well">	
-				 <%= link_to '×', list, method: :delete, data: { confirm: 'Você tem certeza?' },:class => "btn btn-danger navbar-right" %>	<br>
-				<%= form_for(list,:remote => true) do |f| %>			
+					<%= link_to '×', list, method: :delete, data: { confirm: 'Você tem certeza?' },:class => "btn btn-danger navbar-right" %>	<br>
+					<%= form_for(list,:remote => true) do |f| %>			
 					<h3><div class="title-list" id="lista-<%= list.id %>" lista="<%= list.id %>"><%= list.title %></div></h3>	
 					<% end %>				
-						
+
 					<% list.tasks.each do |task| %>		
+					<% @tasks.each do |t| %>	
+					<% if t.id == task.id %>
+					<% t.checklists.each do |c| %>
+					<% if c.completed %>
+					<% @count = @count +1 %>
+					<% end %>
+					<% end %>
+					<% if @count != t.checklists.size  %>
+					<span id="prog-<%= t.id %>" class="label label-default"><%= @count %>/<%= t.checklists.size %></span>
+					<% else %>
+					<span id="prog-<%= t.id %>" class="label label-success"><%= @count %>/<%= t.checklists.size %></span>
+					<% end %>
+					<% end %>
+					<% end %>
 					<%= link_to task.title, edit_task_path(task), :remote => true,:id => "main-"+task.id.to_s,:class => "thumbnail" %>
+                    <% @count = 0%>
 					<% end %>		
 				</div>	
 				<%= link_to 'Nova Tarefa', new_task_path(:list => list.id), :remote => true, :class => "btn btn-primary btn-lg btn-block", :style => "margin-top: 0px;" %>
@@ -29,7 +44,7 @@
 		<div class="">
 			<div style="height:200px">
 				<div id="List">
-				<div style="height: 185px;">	<%= link_to 'Nova Lista ...', new_list_path, :remote => true, :class => "btn btn-success btn-lg btn-block" %></div>			
+					<div style="height: 185px;">	<%= link_to 'Nova Lista ...', new_list_path, :remote => true, :class => "btn btn-success btn-lg btn-block" %></div>			
 					<div>&nbsp;</div>
 				</div>				
 			</div>	
@@ -56,32 +71,32 @@
 	});
 
 	$( document ).ready(function() {
-    teste();
-});
-
-function teste(){
-$(document).on('click', '.title-list', function(){ 
-
-	var str1 = $(this).html();
-	var str2 = "<input";
-	if(str1.indexOf(str2) != -1){
-		
-	}else{
-		$(this).html('<input id="list_title" list='+$(this).attr("lista")+' class="form-control" name="list[title]" type="text" value="'+$(this).html()+'">');
-		$("#list_title").focus();
-		update();
-	}
-});
-}
-
-function update(){
-	$(document).on('blur', '#list_title', function(){  	
-		$('#edit_list_'+$(this).attr("list")).submit();
-		$("#title").html($(this).val());		
+		teste();
 	});
 
-	$(document).on('keydown', '#list_title', function(ev){ 
-		if(ev.which === 13) {
+	function teste(){
+		$(document).on('click', '.title-list', function(){ 
+
+			var str1 = $(this).html();
+			var str2 = "<input";
+			if(str1.indexOf(str2) != -1){
+
+			}else{
+				$(this).html('<input id="list_title" list='+$(this).attr("lista")+' class="form-control" name="list[title]" type="text" value="'+$(this).html()+'">');
+				$("#list_title").focus();
+				update();
+			}
+		});
+	}
+
+	function update(){
+		$(document).on('blur', '#list_title', function(){  	
+			$('#edit_list_'+$(this).attr("list")).submit();
+			$("#title").html($(this).val());		
+		});
+
+		$(document).on('keydown', '#list_title', function(ev){ 
+			if(ev.which === 13) {
         // Will change backgroundColor to blue as example       
         $('#edit_list_'+$(this).attr("list")).submit(); 
         $("#title").html($(this).val());      
@@ -89,6 +104,6 @@ function update(){
         return false;
     }
 });
-}
+	}
 </script>
 

@@ -1,6 +1,27 @@
 <% if @checklist.completed %>
- $("#link-<%= escape_javascript(@checklist.id.to_s)%>").css({ 'text-decoration': 'line-through' });
+var qtd = $("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").html().split("/");
+var feitas = parseInt(qtd[0])+1;
+var total = parseInt(qtd[1]);
+var porc = (feitas*100) / total ;
+$(".progress-bar").css({ 'width': porc.toFixed()+"%" });
+$("#porcentagem").html(porc.toFixed()+"%");
+
+
+if (feitas == total){
+	$("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").attr("class","label label-success");
+}
+$("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").html(feitas+"/"+total);
+$("#link-<%= escape_javascript(@checklist.id.to_s)%>").css({ 'text-decoration': 'line-through' });
 
 <% else %>
+var qtd = $("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").html().split("/");
+var feitas = parseInt(qtd[0])-1;
+var total = parseInt(qtd[1]);
+var porc = (feitas*100) / total ;
+$(".progress-bar").css({ 'width': porc.toFixed()+"%" });
+$("#porcentagem").html(porc.toFixed()+"%");
+$("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").attr("class","label label-default");
+$("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").html(feitas+"/"+total);
+
 $("#link-<%= escape_javascript(@checklist.id.to_s)%>").css({ 'text-decoration': '' });
 <% end %>
