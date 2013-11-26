@@ -10,7 +10,7 @@ div.row {
     white-space: nowrap;
 }
 div.row [class*="col-sm-6"] {
-    display: inline-block;
+    display: inline-table;
     float: none; /* Very important */
     clear: both;
 }

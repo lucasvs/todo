@@ -34,14 +34,8 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1
   # PATCH/PUT /lists/1.json
   def update
-    respond_to do |format|
-      if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
-      end
+    if @list.update(list_params)
+      flash.now[:success] = "Successfully created task." 
     end
   end
 
@@ -50,7 +44,7 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
     respond_to do |format|
-      format.html { redirect_to lists_url }
+      format.html { redirect_to "/" }
       format.json { head :no_content }
     end
   end

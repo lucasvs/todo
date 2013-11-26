@@ -26,7 +26,7 @@
   /* append na lista do id certo*/
     
     
-  $("#task-<%= escape_javascript(@checklist.id.to_s)%>").append('<div class="checkbox"><input  data-remote="true" data-url="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/complete" id="id" name="id" type="checkbox" ><label><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="task-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></label></div>');
+  $("#checklist-<%= escape_javascript(@task_id.to_s)%>").after('<div class="checkbox"><input  data-remote="true" data-url="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/complete" id="id" name="id" type="checkbox" ><label><div id="task-<%= escape_javascript(@checklist.id.to_s)%>"><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></label></div></div>');
 
   $("#new_checklist ").remove();
  

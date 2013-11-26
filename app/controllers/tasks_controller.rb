@@ -55,7 +55,7 @@ end
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to "/" }
       format.json { head :no_content }
     end
   end

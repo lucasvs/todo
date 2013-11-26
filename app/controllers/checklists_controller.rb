@@ -44,7 +44,7 @@ end
   # POST /checklists.json
   def create
     @checklist = Checklist.new(checklist_params)   
-    @task_id = checklist_params[:task_id]    
+    @task_id = checklist_params[:task_id]       
     if @checklist.save                
      flash.now[:success] = "Successfully created task." 
    end

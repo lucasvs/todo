@@ -1,7 +1,8 @@
 $("#task-<%= escape_javascript(@task)%>").html("<%= escape_javascript(render "edit", :formats => [:html]) %>");
 $('#checklist_description').focus();
 
-$('#checklist_description').on('blur', function () {    
+$('#checklist_description').on('blur', function () {   
+ 
      $('.edit_checklist').submit();
      
   });

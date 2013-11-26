@@ -8,11 +8,12 @@
 	<div class="col-sm-6 col-md-3" >
 		<div class="">
 			<div style="height:200px">
-				<div id="<%= list.id %>-List" class="well">					
-					<h3><%= list.title %></h3>					
-					<% if  list.tasks.size  == 0 %>
-					<div style="height:50px"></div>
-					<% end %>		
+				<div id="<%= list.id %>-List" class="well">	
+				 <%= link_to '×', list, method: :delete, data: { confirm: 'Você tem certeza?' },:class => "btn btn-danger navbar-right" %>	<br>
+				<%= form_for(list,:remote => true) do |f| %>			
+					<h3><div class="title-list" id="lista-<%= list.id %>" lista="<%= list.id %>"><%= list.title %></div></h3>	
+					<% end %>				
+						
 					<% list.tasks.each do |task| %>		
 					<%= link_to task.title, edit_task_path(task), :remote => true,:id => "main-"+task.id.to_s,:class => "thumbnail" %>
 					<% end %>		
@@ -53,5 +54,41 @@
 	$( window ).resize(function() {
 		get_tamanho();
 	});
+
+	$( document ).ready(function() {
+    teste();
+});
+
+function teste(){
+$(document).on('click', '.title-list', function(){ 
+
+	var str1 = $(this).html();
+	var str2 = "<input";
+	if(str1.indexOf(str2) != -1){
+		
+	}else{
+		$(this).html('<input id="list_title" list='+$(this).attr("lista")+' class="form-control" name="list[title]" type="text" value="'+$(this).html()+'">');
+		$("#list_title").focus();
+		update();
+	}
+});
+}
+
+function update(){
+	$(document).on('blur', '#list_title', function(){  	
+		$('#edit_list_'+$(this).attr("list")).submit();
+		$("#title").html($(this).val());		
+	});
+
+	$(document).on('keydown', '#list_title', function(ev){ 
+		if(ev.which === 13) {
+        // Will change backgroundColor to blue as example       
+        $('#edit_list_'+$(this).attr("list")).submit(); 
+        $("#title").html($(this).val());      
+        // Avoid form submit
+        return false;
+    }
+});
+}
 </script>
 

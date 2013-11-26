@@ -1,0 +1,34 @@
+
+
+$('#title-list').on('click', function () {  
+
+	var str1 = $(this).html();
+	var str2 = "<input";
+	if(str1.indexOf(str2) != -1){
+		
+	}else{
+		$(this).html('<input id="list_title" list='+$(this).attr("lista")+' class="form-control" name="list[title]" type="text" value="'+$(this).html()+'">');
+		$("#list_title").focus();
+		update();
+	}
+});
+
+function update(){
+	$('#list_title').on('blur', function () {  	
+		$('#edit_list_6').submit();
+		$("#title").html($(this).val());
+
+		
+	});
+
+	$('#list_title').on('keydown', function (ev) {
+		if(ev.which === 13) {
+        // Will change backgroundColor to blue as example       
+        $('#edit_list_6').submit(); 
+        $("#title").html($(this).val());      
+        // Avoid form submit
+        return false;
+    }
+});
+}
+

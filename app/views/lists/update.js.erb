@@ -1,12 +1,12 @@
-<% if @task.errors.any? -%>
+<% if @list.errors.any? -%>
   /*Hide the flash notice div*/
   $("#flash_notice").hide(300);
 
- <% @task.errors.full_messages.each do |msg| -%>
+ <% @list.errors.full_messages.each do |msg| -%>
  $("#checklist_errors").html("<%= escape_javascript(msg)%>");     
   <% end -%>
-$("#main-<%= escape_javascript(@task.id.to_s)%>").html('Título não pode ser vazio');
 
+$("#lista-<%= escape_javascript(@list.id.to_s)%>").html('Título não pode ser vazio');
 <% else -%>
 
   /*Update the html of the div flash_notice with the new one*/ 
@@ -16,9 +16,9 @@ $("#main-<%= escape_javascript(@task.id.to_s)%>").html('Título não pode ser va
   
    
 
-$("#main-<%= escape_javascript(@task.id.to_s)%>").html('<%= escape_javascript(@task.title)%>');
+$("#lista-<%= escape_javascript(@list.id.to_s)%>").html('<%= escape_javascript(@list.title)%>');
 
  
-  
+ 
 
 <% end -%>

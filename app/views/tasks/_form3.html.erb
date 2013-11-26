@@ -1,0 +1,35 @@
+<%= form_for(@task,:remote => true) do |f| %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <script>
+   $('#myModal').on('hidden.bs.modal', function () {
+    $(this).remove();
+  });
+ </script>
+ <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel"><div id="title"><%= @task.title %> </div></h4>
+    </div>
+    <div class="modal-body">
+      
+<div id="description"><%= @task.description %> </div>
+
+<div class="field">
+  <%= f.label :date %><br>
+  <%= f.datetime_select :date %>
+</div>
+<div class="field">
+  <%= f.label :move %><br>
+  <%= f.number_field :move %>
+</div>
+<div class="field">
+  <%= f.label :color_id %><br>
+  <%= f.number_field :color_id %>
+</div>
+<div class="field">
+  <%= f.label :list_id %><br>
+  <%= f.number_field :list_id %>
+</div>
+
+<% end %>
