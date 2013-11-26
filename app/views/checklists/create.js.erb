@@ -27,7 +27,11 @@
 var qtd = $("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").html().split("/");
 var feitas = parseInt(qtd[0]);
 var total = parseInt(qtd[1])+1;
+if (total > 0  ){
 var porc = (feitas*100) / total ;
+}else{
+  var porc = 0;
+}
 $(".progress-bar").css({ 'width': porc.toFixed()+"%" });
 $("#porcentagem").html(porc.toFixed()+"%");
 
