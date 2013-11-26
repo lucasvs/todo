@@ -29,7 +29,7 @@ var feitas = parseInt(qtd[0]);
 var total = parseInt(qtd[1])+1;
 var porc = (feitas*100) / total ;
 $(".progress-bar").css({ 'width': porc.toFixed()+"%" });
-$("#porcentagem").html(porc+"%");
+$("#porcentagem").html(porc.toFixed()+"%");
 
 
 if (feitas == total){

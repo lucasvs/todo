@@ -30,7 +30,11 @@
             <% end %>
           
        <% end %>
+       <% if @task.checklists.size > 1%>
        <% porct = (qtd*100) / (@task.checklists.size - 1) %>
+       <% else %>
+       <% porct = 0 %>
+       <% end %>
        <h3>CheckList <span id="porcentagem"><%= porct %>%</span> </h3>
        
       <div class="progress">
@@ -53,7 +57,7 @@
              <%= link_to item.description, edit_checklist_path(item.id), :remote => true,:id => "link-"+item.id.to_s , :class => "", :style => "margin-top: 0px;" %>
              <% end %>
            </label> 
-         </div>
+         </div>         
        </div>
        <% end %>
        <% end %>
@@ -63,6 +67,5 @@
    <div class="modal-footer">
    <%= link_to 'Excluir Tarefa', @task, method: :delete, data: { confirm: 'Você tem certeza?' },:class => "btn btn-danger" %>
   </div>
-</div>
 </div>
 </div>
