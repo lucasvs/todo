@@ -46,7 +46,7 @@ end
     @checklist = Checklist.new(checklist_params)   
     @task_id = checklist_params[:task_id]       
     if @checklist.save                
-     flash.now[:success] = "Successfully created task." 
+     #flash.now[:success] = "Successfully created task." 
    end
  end
 
@@ -54,7 +54,7 @@ end
   # PATCH/PUT /checklists/1.json
   def update    
     if @checklist.update(checklist_params)
-      flash.now[:success] = "Successfully created task." 
+      #flash.now[:success] = "Successfully created task." 
     end
   end
 

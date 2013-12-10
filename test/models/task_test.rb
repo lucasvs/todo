@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+ 
+ it "Titulo da tarefa nao pode ser vazio" do
+  Task.new(:title => "").should_not be_valid
+end
 end

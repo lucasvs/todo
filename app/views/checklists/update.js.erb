@@ -32,9 +32,9 @@ $("#task-<%= escape_javascript(@checklist.id.to_s)%>").html('<div class="checkbo
   /* append na lista do id certo*/
     
   <% if @checklist.completed %>  
-$("#task-<%= escape_javascript(@checklist.id.to_s)%>").html('<div class="checkbox"><label><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;text-decoration: line-through;"><%= escape_javascript(@checklist.description)%></a></label></div>');
+$("#task-<%= escape_javascript(@checklist.id.to_s)%>").html('<label><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;text-decoration: line-through;"><%= escape_javascript(@checklist.description)%></a></label>');
 <% else %>
-$("#task-<%= escape_javascript(@checklist.id.to_s)%>").html('<div class="checkbox"><label><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></label></div>');
+$("#task-<%= escape_javascript(@checklist.id.to_s)%>").html('<label><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></label>');
 <% end %>
 
   $(".edit_checklist ").remove();

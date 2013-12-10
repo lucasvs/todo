@@ -42,7 +42,7 @@ if (feitas == total){
 $("#prog-<%= escape_javascript(@checklist.task_id.to_s)%>").html(feitas+"/"+total);
 
 
-  $("#checklist-<%= escape_javascript(@task_id.to_s)%>").after('<div class="checkbox"><input  data-remote="true" data-url="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/complete" id="id" name="id" type="checkbox" ><label><div id="task-<%= escape_javascript(@checklist.id.to_s)%>"><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></label></div></div>');
+  $("#checklist-<%= escape_javascript(@task_id.to_s)%>").append('<div class="checkbox"><input  data-remote="true" data-url="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/complete" id="id" name="id" type="checkbox" ><label><div id="task-<%= escape_javascript(@checklist.id.to_s)%>"><a class="" data-remote="true" href="/checklists/<%= escape_javascript(@checklist.id.to_s)%>/edit?task=<%= escape_javascript(@checklist.id.to_s)%>" id="link-<%= escape_javascript(@checklist.id.to_s)%>" style="margin-top: 0px;"><%= escape_javascript(@checklist.description)%></a></div></label></div>');
 
   $("#new_checklist ").remove();
  

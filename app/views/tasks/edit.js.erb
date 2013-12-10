@@ -10,7 +10,7 @@ $('#title').on('click', function () {
 	if(str1.indexOf(str2) != -1){
 		
 	}else{
-		$(this).html('<input id="task_title" class="form-control" name="task[title]" type="text" value="'+$(this).html()+'">');
+		$(this).html('<input id="task_title" style="width:100%" class="form-control" name="task[title]" type="text" value="'+$(this).html()+'">');
 		$("#task_title").focus();
 		update();
 	}
@@ -19,9 +19,7 @@ $('#title').on('click', function () {
 function update(){
 	$('#task_title').on('blur', function () {  	
 		$('.edit_task').submit();
-		$("#title").html($(this).val());
-
-		
+		$("#title").html($(this).val());		
 	});
 
 	$('#task_title').on('keydown', function (ev) {
@@ -43,8 +41,8 @@ $('#description').on('click', function () {
 		
 	}else{
 
-		var texto =   $(this).html(); 
-		$(this).html('<textarea id="task_description" name="task[description]"></textarea>');
+		var texto =   $(this).text(); 
+		$(this).html('<p><textarea id="task_description" style="width:100%" name="task[description]"></textarea></p>');
 		$("#task_description").text(texto);
 		$("#task_description").focus();
 		update_description();
@@ -55,7 +53,7 @@ $('#description').on('click', function () {
 function update_description(){
 	$('#task_description').on('blur', function () {  	
 		$('.edit_task').submit();
-		$("#description").html($(this).val());
+		$("#description").html("<p>" + $(this).val() + "</p>");
 		
 	});
 

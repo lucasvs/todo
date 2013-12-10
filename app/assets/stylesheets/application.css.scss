@@ -1,7 +1,9 @@
+
 // change colors
 //$link-color: red;
 
 // import original bootstrap
+@import "bootstrap-datepicker";
 @import "twitter/bootstrap";
 
 
@@ -15,3 +17,30 @@ div.row [class*="col-sm-6"] {
     clear: both;
 }
 
+.modal-header {
+    word-wrap: break-word;
+}
+
+
+.modal-body {
+    word-wrap: break-word;
+}
+
+.link{
+	text-decoration:none;
+	color:#E22121;
+}
+
+.link:hover{
+
+	text-decoration:none;
+	color:#E25353;
+}
+
+.nocheck{
+	color:#000;
+}
+
+.checked{
+	color: #000;
+}

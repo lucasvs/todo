@@ -27,7 +27,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)      
       if @list.save                
-         flash.now[:success] = "Successfully created task." 
+       #flash.now[:success] = "Successfully created task." 
     end
   end
 
@@ -35,7 +35,7 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1.json
   def update
     if @list.update(list_params)
-      flash.now[:success] = "Successfully created task." 
+      #flash.now[:success] = "Successfully created task." 
     end
   end
 

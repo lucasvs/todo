@@ -11,12 +11,18 @@ gem 'sqlite3', :group => :development
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+#bootstrap datepicker
+gem 'bootstrap-datepicker-rails'
 
+#avatar devise
+gem 'carrierwave'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+#crontab
+gem "rufus-scheduler", "~> 3.0.2"
 #bootstrap
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails'
+:github => 'anjlab/bootstrap-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -55,13 +61,23 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
- gem 'unicorn'
+gem 'unicorn'
+
+gem 'simplecov'
+gem 'simplecov-rcov'
+gem 'guard-rspec'
+gem 'guard-livereload'
+  gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
 
 # Use Capistrano for deployment
- gem 'capistrano', '~> 3.0', :group => :development
- gem 'capistrano-rails', :group => :development
- gem 'capistrano-bundler', :group => :development
- gem 'capistrano-rvm', '~> 0.0.3', :group => :development
+gem 'capistrano', '~> 3.0', :group => :development
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-bundler', :group => :development
+gem 'capistrano-rvm', '~> 0.0.3', :group => :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

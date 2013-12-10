@@ -2,70 +2,89 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <script>
    $('#myModal').on('hidden.bs.modal', function () {
-    $(this).remove();
+    $(this).remove();   
+   
+
   });
+
+  $(document).on('click', 'select', function(){ 
+    $('#submit').show();
+      
+    });
+   $('.datepicker').datepicker({
+    format: "yy-mm-dd"
+  });
+    $(document).on('click', '#submit', function(){ 
+    $('#submit').hide();
+      
+    });
+  
  </script>
  <div class="modal-dialog">
   <div class="modal-content">
-  <%= form_for(@task,:remote => true) do |f| %>
+    <%= form_for(@task,:remote => true) do |f| %>
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel"><div id="title"><%= @task.title %> </div></h4>
+    </div>
+    <% end %>
+    <div class="modal-body">
+     <%= form_for(@task,:remote => true) do |f| %>
+        
+     <div id="description"><p><%= @task.description %> </p></div>
+     <% end %>
 
-
-        <h4 class="modal-title" id="myModalLabel"><div id="title"><%= @task.title %> </div></h4>
-      </div>
-
-        <div id="description"><%= @task.description %> </div>
+     <% qtd = 0 %>
+     <% @task.checklists.each do |item| %>
+     <% if item.completed %>
+     <% qtd = qtd + 1%>
+     <% end %>
 
      <% end %>
-      <div class="modal-body">
+     <% if @task.checklists.size > 1%>
+     <% porct = (qtd*100) / (@task.checklists.size - 1) %>
+     <% else %>
+     <% porct = 0 %>
+     <% end %>
+     <h3>CheckList <span id="porcentagem"><%= porct %>%</span> </h3>
 
+     <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= porct %>%;">
+        <span class="sr-only">60% Complete</span>
+      </div>
+    </div>
+    <div id="checklist-<%= @task.id %>">
+      <% @task.checklists.each do |item| %>
+      <% if item.id != nil %>
+      <div class="checkbox">
 
-
-      
-      <% qtd = 0 %>
-       <% @task.checklists.each do |item| %>
-            <% if item.completed %>
-              <% qtd = qtd + 1%>
-            <% end %>
-          
-       <% end %>
-       <% if @task.checklists.size > 1%>
-       <% porct = (qtd*100) / (@task.checklists.size - 1) %>
-       <% else %>
-       <% porct = 0 %>
-       <% end %>
-       <h3>CheckList <span id="porcentagem"><%= porct %>%</span> </h3>
-       
-      <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= porct %>%;">
-    <span class="sr-only">60% Complete</span>
-  </div>
-</div>
-      <div id="checklist-<%= @task.id %>">
-        <% @task.checklists.each do |item| %>
-        <% if item.id != nil %>
-        <div class="checkbox">
-
-         <%= check_box_tag( "id", item.id, item.completed, data: 
-         {remote: true,url:  complete_task_path(item.id),  }) %>
-         <div id="task-<%= item.id.to_s %>" >
-           <label>
-             <% if item.completed %>
-             <%= link_to item.description, edit_checklist_path(item.id), :remote => true, :class => "",:id => "link-"+item.id.to_s, :style => "margin-top: 0px;text-decoration:line-through" %>
-             <% else %>     
-             <%= link_to item.description, edit_checklist_path(item.id), :remote => true,:id => "link-"+item.id.to_s , :class => "", :style => "margin-top: 0px;" %>
-             <% end %>
-           </label> 
-         </div>         
-       </div>
-       <% end %>
-       <% end %>
+       <%= check_box_tag( "id", item.id, item.completed, data: 
+       {remote: true,url:  complete_task_path(item.id),  }) %>
+       <div id="task-<%= item.id.to_s %>" >
+         <label>
+           <% if item.completed %>
+           <%= link_to item.description, edit_checklist_path(item.id), :remote => true, :class => "checked",:id => "link-"+item.id.to_s, :style => "margin-top: 0px;text-decoration:line-through" %>
+           <% else %>     
+           <%= link_to item.description, edit_checklist_path(item.id), :remote => true,:id => "link-"+item.id.to_s , :class => "nocheck", :style => "margin-top: 0px;" %>
+           <% end %>
+         </label> 
+       </div>         
      </div>
-     <%= link_to 'Novo Item...', new_checklist_path(:task => @task.id), :remote => true, :class => "btn btn-success ", :style => "margin-top: 5px;" %>   
+     <% end %>
+     <% end %>
    </div>
-   <div class="modal-footer">
+   <%= link_to 'Novo Item...', new_checklist_path(:task => @task.id), :remote => true, :class => "btn btn-success ", :style => "margin-top: 5px;" %>  
+<div class="field">
+     <%= form_for(@task,:remote => true) do |f| %>
+     <%= f.label "Data de termino:" %><br>
+      <%= f.datetime_select :date %> 
+       <%= f.submit "atualizar data" , :class => 'btn btn-danger',:id => "submit",:style => "display:none" %>  
+      <% end %>
+      </div>
+
+ </div>
+ <div class="modal-footer">
    <%= link_to 'Excluir Tarefa', @task, method: :delete, data: { confirm: 'Você tem certeza?' },:class => "btn btn-danger" %>
-  </div>
+ </div>
 </div>
 </div>

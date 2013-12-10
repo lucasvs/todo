@@ -38,7 +38,7 @@ end
     @task = Task.new(task_params)
     @list_id = task_params[:list_id]    
       if @task.save                
-         flash.now[:success] = "Successfully created task." 
+         #flash.now[:success] = "Successfully created task." 
     end
   end
 
@@ -46,7 +46,7 @@ end
   # PATCH/PUT /tasks/1.json
   def update
      if @task.update(task_params)
-      flash.now[:success] = "Successfully created task." 
+      #flash.now[:success] = "Successfully created task." 
     end
   end
 

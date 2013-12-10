@@ -6,6 +6,7 @@ DeviseExample::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -27,7 +28,16 @@ DeviseExample::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+
+   config.action_mailer.default_url_options = { :host => 'localhost:3000.com' }
+          config.action_mailer.smtp_settings =  {
+          :enable_starttls_auto => true,
+          :address        => 'smtp.gmail.com',
+          :port           => 587,                                   # default port for gmail.
+          :domain         => 'your.domain.com',
+          :authentication => :login,
+          :content_type   => "text/html",
+          :user_name      => 'todoprog4@gmail.com',
+          :password       => 'todoprog4123'
+                                                                  }
 end
