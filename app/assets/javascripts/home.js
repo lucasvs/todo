@@ -4,7 +4,7 @@ $( document ).ready(function() {
 		teste();
 		get_tamanho();
 		update();
-	 $('.datepicker').datepicker();
+	
 	});
 
 
