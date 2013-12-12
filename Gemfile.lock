@@ -55,6 +55,8 @@ GEM
     arel (4.0.0)
     atomic (1.1.10)
     bcrypt-ruby (3.1.1)
+    bootstrap-datepicker-rails (1.1.1.10)
+      railties (>= 3.0)
     builder (3.1.4)
     capistrano (3.0.1)
       i18n
@@ -247,6 +249,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
+  bootstrap-datepicker-rails
   capistrano (~> 3.0)
   capistrano-bundler
   capistrano-rails

@@ -12,7 +12,7 @@ gem 'sqlite3', :group => :development
 # Use postgresql as the database for Active Record
 gem 'pg'
 #bootstrap datepicker
-#gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails'
 
 #avatar devise
 gem 'carrierwave'
@@ -63,15 +63,15 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
-  gem 'simplecov', :group => :development
-  gem 'simplecov-rcov', :group => :development
-  gem 'guard-rspec', :group => :development
-  gem 'guard-livereload', :group => :development
-  gem 'spork-rails', github: 'sporkrb/spork-rails', :group => :development # rubygems version not rails 4 compatible
-  gem 'guard-spork', :group => :development
-  gem 'childprocess', :group => :development
-  gem 'factory_girl_rails', :group => :development
-  gem 'rspec-rails', :group => :development
+gem 'simplecov'
+gem 'simplecov-rcov'
+gem 'guard-rspec'
+gem 'guard-livereload'
+  gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.0', :group => :development
