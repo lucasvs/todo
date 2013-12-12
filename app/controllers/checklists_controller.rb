@@ -61,11 +61,7 @@ end
   # DELETE /checklists/1
   # DELETE /checklists/1.json
   def destroy
-    @checklist.destroy
-    respond_to do |format|
-      format.html { redirect_to checklists_url }
-      format.json { head :no_content }
-    end
+   
   end
 
   private

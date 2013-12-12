@@ -6,14 +6,14 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+   # @tasks = Task.all
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show  
-      @task = Task.find(params[:id])
-    @checklist = @task.checklists.new
+    #  @task = Task.find(params[:id])
+    #@checklist = @task.checklists.new
   end
 
   # GET /tasks/new
